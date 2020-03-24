@@ -5,7 +5,7 @@ iris template
  - [ ] iris mvc controller
  - [ ] error handler
  - [ ] 错误处理
- - [ ] api的单元测试
+ - [ ] api的单元测试 base_test.go
  - [ ] gorm
  - [ ] sql脚本
  - [ ] redis
@@ -25,6 +25,11 @@ iris template
  - [ ] Makefile
  - [ ] 返回静态文件
  - [ ] websocket
+ - [ ] BeforeActivation
+ - [ ] 登录，注册，得到用户信息功能
+ - [ ] casbin
+ - [ ] debug模式
+ - [ ] /根路径的处理
 
 ## swagger使用
  - 安装

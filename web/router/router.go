@@ -4,10 +4,10 @@ import (
 	"errors"
 	"github.com/iris-contrib/swagger/v12"
 	"github.com/kataras/iris/v12"
-	"github.com/kataras/iris/v12/_examples/mvc/login/web/controllers"
 	"github.com/kataras/iris/v12/mvc"
 	"github.com/liguoqinjim/iris_template/config"
 	"github.com/liguoqinjim/iris_template/logger"
+	"github.com/liguoqinjim/iris_template/web/controller"
 	"github.com/liguoqinjim/iris_template/web/core"
 	"github.com/liguoqinjim/iris_template/web/middleware"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
@@ -26,6 +26,7 @@ func API(app *iris.Application) {
 
 	mvc.Configure(app.Party(apiPrefix), func(app *mvc.Application) {
 		app.Router.Use(middleware.Cors(), middleware.RequestId, middleware.LoggerHandler)
+
 		if config.Conf.JwtFlag {
 			app.Router.Use(iris.NewConditionalHandler(func(ctx iris.Context) bool {
 
@@ -36,9 +37,10 @@ func API(app *iris.Application) {
 			}))
 		}
 
-		//app.HandleError(core.HandleError)
+		//总的错误处理
+		app.HandleError(core.HandleError)
 
-		app.Party("/login").Handle(new(controllers.UserController))
+		app.Party("/user").Handle(new(controller.UserController))
 	})
 
 	//rootParty := app.Party("/", middleware.Cors(), middleware.RequestId, middleware.LoggerHandler) //这里可以加上cors的middleware

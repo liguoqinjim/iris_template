@@ -37,19 +37,20 @@ func initDB() {
 	DB.DB().SetMaxIdleConns(5)
 	DB.DB().SetMaxOpenConns(10)
 
-	if config.Conf.Debug {
-		DB.LogMode(true)
-	}
+	//todo debug模式
+	//if config.Conf.Debug {
+	//	DB.LogMode(true)
+	//}
 
 	DB.BlockGlobalUpdate(true)
 }
 
 func InitTestDB() {
 	DB.AutoMigrate(
-		&datamodels.User{}, &datamodels.Auth{})
+		&datamodel.User{})
 
 	//测试数据
-	DB.Create(&datamodels.User{
+	DB.Create(&datamodel.User{
 		Id:       1,
 		Username: "admin",
 		Password: "123456",
@@ -58,5 +59,5 @@ func InitTestDB() {
 
 func ResetTestDB() {
 	DB.DropTable(
-		&datamodels.User{}, &datamodels.Auth{})
+		&datamodel.User{})
 }

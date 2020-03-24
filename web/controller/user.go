@@ -1,19 +1,19 @@
 package controller
 
 import (
-	"github.com/kataras/iris/v12/_examples/mvc/login/services"
-	"github.com/liguoqinjim/iris_template/validator"
-	"github.com/liguoqinjim/iris_template/web/param"
-	"github.com/liguoqinjim/iris_template/web/viewmodel"
-	"time"
-
 	"github.com/iris-contrib/middleware/jwt"
 	"github.com/kataras/iris/v12"
 	"github.com/liguoqinjim/iris_template/config"
 	"github.com/liguoqinjim/iris_template/consts"
 	"github.com/liguoqinjim/iris_template/logger"
+	"github.com/liguoqinjim/iris_template/service"
+	"github.com/liguoqinjim/iris_template/validator"
 	"github.com/liguoqinjim/iris_template/web/core"
+	"github.com/liguoqinjim/iris_template/web/param"
+	"github.com/liguoqinjim/iris_template/web/viewmodel"
+	"time"
 )
+
 type UserController struct{}
 
 // @Summary 用户登录
@@ -38,7 +38,7 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 		return err
 	}
 
-	if user, err := services.UserService.Login(p); err != nil {
+	if user, err := service.UserService.Login(p); err != nil {
 		return err
 	} else {
 		//jwt
@@ -68,16 +68,16 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 // @Failure 400 {object} viewmodel.Response
 // @Router /user/register [post]
 func (c *UserController) PostRegister(ctx iris.Context) error {
-	param := new(param.RegisterParam)
-	if err := ctx.ReadJSON(param); err != nil {
+	p := new(param.RegisterParam)
+	if err := ctx.ReadJSON(p); err != nil {
 		return consts.ErrorParam
 	}
 
-	if err := validator.ValidateStruct(param); err != nil {
+	if err := validator.ValidateStruct(p); err != nil {
 		return err
 	}
 
-	if exist, err := services.UserService.Exist(param.Username); err != nil {
+	if exist, err := service.UserService.Exist(p.Username); err != nil {
 		return consts.ErrorDB
 	} else {
 		if exist {
@@ -85,7 +85,7 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 		}
 	}
 
-	_, err := services.UserService.Register(param)
+	_, err := service.UserService.Register(p)
 	if err != nil {
 		return err
 	}
