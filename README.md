@@ -7,6 +7,7 @@ iris template
  - 错误处理
  - api的单元测试
  - gorm
+ - sql脚本
  - redis
  - swagger
  - jwt
@@ -20,3 +21,7 @@ iris template
  - 启动脚本
  - Dockerfile
  - config_test.go
+
+## swagger使用
+ - 安装
+ - `swag init`
