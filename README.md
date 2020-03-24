@@ -32,6 +32,7 @@ iris template
  - [ ] /根路径的处理
  - [ ] codecov覆盖率
  - [ ] 重命名脚本
+ - [ ] scp脚本
 
 ## swagger使用
  - 安装
