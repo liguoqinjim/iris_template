@@ -10,7 +10,6 @@ import (
 	"github.com/liguoqinjim/iris_template/validator"
 	"github.com/liguoqinjim/iris_template/web/core"
 	"github.com/liguoqinjim/iris_template/web/param"
-	"github.com/liguoqinjim/iris_template/web/viewmodel"
 	"time"
 )
 
@@ -22,7 +21,7 @@ type UserController struct{}
 // @Accept  json
 // @Produce  json
 // @Param body body param.LoginParam true "login"
-// @Success 200 {object} viewmodel.User
+// @Success 200 {object} datamodel.User
 // @Failure 400 {object} viewmodel.Response
 // @Router /user/login [post]
 func (c *UserController) PostLogin(ctx iris.Context) error {
@@ -30,9 +29,6 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 	if err := ctx.ReadJSON(p); err != nil {
 		return consts.ErrorParam
 	}
-
-	reqId := core.GetReqID(ctx)
-	logger.Infow("reqId", reqId)
 
 	if err := validator.ValidateStruct(p); err != nil {
 		return err
@@ -47,17 +43,21 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 			"iat": time.Now().Unix(),
 			"u":   user.Id,
 		})
-		tokenString, _ := token.SignedString([]byte(config.Conf.Secret.Jwt))
+		if t, err := token.SignedString([]byte(config.Conf.Secret.Jwt)); err != nil {
+			logger.Errorf("jwt token", "err", err)
+			return err
+		} else {
+			user.Token = t
+		}
 
 		//更新jwt到redis或mysql
 
-		ctx.JSON(viewmodel.NewUser(user, tokenString))
+		core.Response(ctx, user, nil)
 	}
 
 	return nil
 }
 
-// PostRegister godoc
 // @Summary 用户注册
 // @Description 用户注册
 // @Tags user
@@ -85,12 +85,11 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 		}
 	}
 
-	_, err := service.UserService.Register(p)
-	if err != nil {
+	if _, err := service.UserService.Register(p); err != nil {
 		return err
 	}
 
-	ctx.JSON(viewmodel.ResponseSuccess)
+	core.Response(ctx, nil, nil)
 	return nil
 }
 
@@ -113,32 +112,9 @@ func (c *UserController) GetInfo(ctx iris.Context) error {
 	return nil
 }
 
+//每个controller各自的error handler可以覆盖总的error handler
 func (c *UserController) HandleError(ctx iris.Context, err error) {
 	logger.Errorf("user controller handler error:%v", err)
-	//ctx.Writef("user controller handler error")
 
 	core.Response(ctx, nil, err)
 }
-
-//func (c *UserController) BeforeActivation(b mvc.BeforeActivation) {
-//	log.Println("BeforeActivation")
-//
-//	//b.Handle("POST", "/login", "PostLogin")
-//	//b.Handle(http.MethodPost, "/register", "PostRegister")
-//	//
-//	//b.Handle(http.MethodGet, "/info", "GetInfo")
-//
-//	//b.Handle(
-//	//	"POST",
-//	//	"/login",
-//	//	"PostLogin",
-//	//)
-//
-//	// or even add a global middleware based on this controller's router,
-//	// which in this example is the root "/":
-//	// b.Router().Use(myMiddleware)
-//}
-//func (c *UserController) AfterActivation(b mvc.AfterActivation) {
-//
-//	log.Println("AfterActivation")
-//}

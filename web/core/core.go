@@ -25,6 +25,7 @@ func Response(ctx iris.Context, response interface{}, err error) {
 		})
 	}
 }
+
 func GetReqID(ctx iris.Context) string {
 	requestId := ctx.Values().GetString("req-id")
 

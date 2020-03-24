@@ -43,45 +43,10 @@ func API(app *iris.Application) {
 		app.Party("/user").Handle(new(controller.UserController))
 	})
 
-	//rootParty := app.Party("/", middleware.Cors(), middleware.RequestId, middleware.LoggerHandler) //这里可以加上cors的middleware
-	//{
-	//
-	//	v1 := rootParty.Party(apiPrefix)
-	//	app := mvc.New(v1)
-	//	app.HandleError(core.HandleError)
-	//
-	//	if config.Conf.JwtFlag {
-	//		v1.Use(iris.NewConditionalHandler(func(ctx iris.Context) bool {
-	//
-	//			if strings.HasSuffix(ctx.Path(), "login") {
-	//				return false
-	//			}
-	//			return true
-	//		}))
-	//	}
-	//
-	//	{
-	//
-	//		mvc.New(v1.Party("/login")).Handle(new(controllers.LoginController))
-	//		mvc.New(v1.Party("/callback")).Handle(new(controllers.CallbackController))
-	//
-	//		//todo jwt
-	//
-	//		mvc.New(v1.Party("/user")).Handle(new(controllers.UserController))
-	//		mvc.New(v1.Party("/auth")).Handle(new(controllers.AuthController))
-	//	}
-	//
-	//}
-
-	//todo
-	//app.Get("/ws", websocket.Handler(ws.Ws))
-
 	//swagger
 	swag(app)
 
 	app.OnErrorCode(iris.StatusNotFound, func(ctx iris.Context) {
-		// error code handlers are not sharing the same middleware as other routes, so we have
-		// to call them inside their body.
 		logger.Errorf(ctx.Path())
 		core.Response(ctx, nil, errors.New(ctx.Path()+" path not found"))
 	})

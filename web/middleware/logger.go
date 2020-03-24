@@ -9,8 +9,6 @@ import (
 )
 
 func LoggerHandler(ctx iris.Context) {
-	logger.Debugw("logger middleware ing...")
-
 	start := time.Now().UTC()
 	path := ctx.Request().URL.Path
 
@@ -25,7 +23,6 @@ func LoggerHandler(ctx iris.Context) {
 	ip := ctx.RemoteAddr()
 	dumpReq, _ := httputil.DumpRequest(ctx.Request(), true)
 	if dumpReq != nil {
-		logger.Debugf("Request start", "requestId", core.GetReqID(ctx), "description", string(dumpReq))
 		logger.Debugw("Request start", "requestId", core.GetReqID(ctx), "description", string(dumpReq))
 	}
 

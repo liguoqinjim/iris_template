@@ -2,7 +2,6 @@ package service
 
 import (
 	"github.com/liguoqinjim/iris_template/datamodel"
-	"github.com/liguoqinjim/iris_template/logger"
 	"github.com/liguoqinjim/iris_template/repository"
 	"github.com/liguoqinjim/iris_template/web/param"
 	"github.com/pkg/errors"
@@ -23,20 +22,20 @@ func (s userService) Exist(username string) (bool, error) {
 }
 
 func (s *userService) Register(param *param.RegisterParam) (*datamodel.User, error) {
-	//user := &datamodel.User{Username: param.Username, Password: param.Password}
+	user := &datamodel.User{Username: param.Username, Password: param.Password}
+	user, err := s.repoUser.Insert(user)
 
-	//todo
-
-	return nil, nil
+	return user, err
 }
 
 func (s *userService) Login(param *param.LoginParam) (*datamodel.User, error) {
-	user, err := s.repoUser.Get(param.Username)
-
-	logger.Debugf("password:%s,%s", user.Password, param.Password)
-	if user.Password != param.Password {
-		return nil, errors.New("用户名或密码错误")
+	if user, err := s.repoUser.Get(param.Username); err != nil {
+		return nil, err
+	} else {
+		if user.Password != param.Password {
+			return nil, errors.New("用户名或密码错误")
+		} else {
+			return user, nil
+		}
 	}
-
-	return user, err
 }

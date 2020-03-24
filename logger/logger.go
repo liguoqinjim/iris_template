@@ -2,10 +2,10 @@ package logger
 
 import (
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
+	"github.com/liguoqinjim/iris_template/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"io"
-	"github.com/liguoqinjim/iris_template/config"
 	"os"
 	"path"
 	"time"
@@ -84,6 +84,10 @@ func Infow(template string, args ...interface{}) {
 
 func Errorf(template string, args ...interface{}) {
 	zapLog.Errorf(template, args...)
+}
+
+func Errorw(template string, args ...interface{}) {
+	zapLog.Errorw(template, args...)
 }
 
 func Debugf(template string, args ...interface{}) {

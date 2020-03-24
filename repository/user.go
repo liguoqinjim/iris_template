@@ -5,7 +5,6 @@ import (
 	"github.com/liguoqinjim/iris_template/consts"
 	"github.com/liguoqinjim/iris_template/datamodel"
 	"github.com/liguoqinjim/iris_template/datasource"
-	"github.com/liguoqinjim/iris_template/logger"
 )
 
 type UserRepository interface {
@@ -22,7 +21,6 @@ func NewUserRepository() UserRepository {
 
 func (r *userRepository) Insert(user *datamodel.User) (*datamodel.User, error) {
 	err := datasource.DB.Create(user).Error
-	logger.Debugf("user1:%v", user)
 
 	return user, err
 }
