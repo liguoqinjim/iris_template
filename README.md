@@ -19,9 +19,14 @@ iris template
  - config /viper
  - go mod
  - 启动脚本
+ - 打包脚本
  - Dockerfile
  - config_test.go
+ - Makefile
 
 ## swagger使用
  - 安装
  - `swag init`
+ 
+## NOTICE
+ - `package consts`用了复数是因为const是golang关键字

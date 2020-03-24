@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var Conf = new(conf)
+var Conf = new(config)
 
 func init() {
 	readConfig()
