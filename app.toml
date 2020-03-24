@@ -19,5 +19,5 @@ page_size = 10
 jwt = "1234567890123456"
 
 [log]
-info_file = "./logs"
-error_file = "./logs"
+info_file = "./log"
+error_file = "./log"

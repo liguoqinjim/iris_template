@@ -1,4 +1,4 @@
-package params
+package param
 
 type RegisterParam struct {
 	Username string `json:"username" validate:"required" comment:"username"`

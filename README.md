@@ -24,6 +24,7 @@ iris template
  - [ ] config_test.go
  - [ ] Makefile
  - [ ] 返回静态文件
+ - [ ] websocket
 
 ## swagger使用
  - 安装

@@ -12,7 +12,7 @@ func NewApp() *iris.Application {
 	app.Logger().SetLevel(config.Conf.IrisLoggerLevel)
 	app.Logger().Install(logger.Log)
 
-	routers.API(app)
+	router.API(app)
 
 	iris.RegisterOnInterrupt(func() {
 		//todo 在这里处理关闭的操作，比如数据库关闭
@@ -24,7 +24,7 @@ func NewApp() *iris.Application {
 
 func NewTestApp() *iris.Application {
 	app := iris.New()
-	routers.API(app)
+	router.API(app)
 
 	iris.RegisterOnInterrupt(func() {
 		//todo 在这里处理关闭的操作，比如数据库关闭

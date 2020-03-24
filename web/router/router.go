@@ -1,4 +1,4 @@
-package routers
+package router
 
 import (
 	"errors"
@@ -6,13 +6,11 @@ import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/_examples/mvc/login/web/controllers"
 	"github.com/kataras/iris/v12/mvc"
-	"github.com/kataras/iris/v12/websocket"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"github.com/liguoqinjim/iris_template/config"
 	"github.com/liguoqinjim/iris_template/logger"
-	"github.com/liguoqinjim/iris_template/web/controller"
 	"github.com/liguoqinjim/iris_template/web/core"
 	"github.com/liguoqinjim/iris_template/web/middleware"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"strings"
 
 	// swagger middleware for Iris
@@ -41,9 +39,6 @@ func API(app *iris.Application) {
 		//app.HandleError(core.HandleError)
 
 		app.Party("/login").Handle(new(controllers.UserController))
-		app.Party("/callback").Handle(new(controllers.CallbackController))
-		app.Party("/user").Handle(new(controllers.UserController))
-		app.Party("/auth").Handle(new(controllers.AuthController))
 	})
 
 	//rootParty := app.Party("/", middleware.Cors(), middleware.RequestId, middleware.LoggerHandler) //这里可以加上cors的middleware
@@ -76,7 +71,8 @@ func API(app *iris.Application) {
 	//
 	//}
 
-	app.Get("/ws", websocket.Handler(ws.Ws))
+	//todo
+	//app.Get("/ws", websocket.Handler(ws.Ws))
 
 	//swagger
 	swag(app)
@@ -85,7 +81,7 @@ func API(app *iris.Application) {
 		// error code handlers are not sharing the same middleware as other routes, so we have
 		// to call them inside their body.
 		logger.Errorf(ctx.Path())
-		core.Response(ctx,nil,errors.New(ctx.Path() + " path not found"))
+		core.Response(ctx, nil, errors.New(ctx.Path()+" path not found"))
 	})
 
 }

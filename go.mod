@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/ajg/form v1.5.1 // indirect
+	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072 // indirect
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
 	github.com/fsnotify/fsnotify v1.4.9
@@ -30,9 +31,9 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sergi/go-diff v1.1.0 // indirect
-	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/spf13/viper v1.6.2
 	github.com/swaggo/gin-swagger v1.2.0
+	github.com/swaggo/swag v1.6.3
 	github.com/tebeka/strftime v0.1.3 // indirect
 	github.com/valyala/fasthttp v1.9.0 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect

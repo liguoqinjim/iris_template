@@ -15,11 +15,12 @@ func init() {
 func readConfig() {
 	v := viper.New()
 	viper.AutomaticEnv()
+	v.SetConfigName("app")
 	v.SetConfigType("toml")
 	v.AddConfigPath(".")
 
-	v.SetDefault("log.info_file", "./")
-	v.SetDefault("log.error_file", "./")
+	v.SetDefault("log.info_file", "./log")
+	v.SetDefault("log.error_file", "./log")
 
 	if err := v.ReadInConfig(); err != nil {
 		fmt.Printf("v.ReadConfig error:%v", err)
