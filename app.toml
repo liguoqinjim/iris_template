@@ -1,0 +1,23 @@
+# 是否开启jwt
+jwt_flag = false
+# 关闭swag的标志
+swagger_flag = "iris_swag"
+iris_logger_level = "debug"
+
+[database]
+host = "127.0.0.1"
+port = 3306
+user = "root"
+password = "123456"
+db_name = "temp_db"
+
+[web]
+port = 18080
+page_size = 10
+
+[secret]
+jwt = "1234567890123456"
+
+[log]
+info_file = "./logs"
+error_file = "./logs"
