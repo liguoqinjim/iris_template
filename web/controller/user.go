@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"github.com/kataras/iris/v12/_examples/mvc/login/services"
 	"time"
 
 	"github.com/iris-contrib/middleware/jwt"
@@ -8,11 +9,11 @@ import (
 	"github.com/liguoqinjim/iris_template/config"
 	"github.com/liguoqinjim/iris_template/consts"
 	"github.com/liguoqinjim/iris_template/logger"
-	"github.com/liguoqinjim/iris_template/services"
-	"github.com/liguoqinjim/iris_template/validators"
+	"github.com/liguoqinjim/iris_template/service"
+	"github.com/liguoqinjim/iris_template/validator"
 	"github.com/liguoqinjim/iris_template/web/core"
-	"github.com/liguoqinjim/iris_template/web/params"
-	"github.com/liguoqinjim/iris_template/web/viewmodels"
+	"github.com/liguoqinjim/iris_template/web/param"
+	"github.com/liguoqinjim/iris_template/web/viewmodel"
 )
 
 type UserController struct{}
@@ -23,8 +24,8 @@ type UserController struct{}
 // @Accept  json
 // @Produce  json
 // @Param body body params.LoginParam true "login"
-// @Success 200 {object} viewmodels.User
-// @Failure 400 {object} viewmodels.Response
+// @Success 200 {object} viewmodel.User
+// @Failure 400 {object} viewmodel.Response
 // @Router /user/login [post]
 func (c *UserController) PostLogin(ctx iris.Context) error {
 	param := &params.LoginParam{}
@@ -35,11 +36,11 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 	reqId := core.GetReqID(ctx)
 	logger.Infow("reqId", reqId)
 
-	if err := validators.ValidateF(param); err != nil {
+	if err := validator.ValidateF(param); err != nil {
 		return err
 	}
 
-	if user, err := services.UserService.Login(param); err != nil {
+	if user, err := service.UserService.Login(param); err != nil {
 		return err
 	} else {
 		//jwt
@@ -52,7 +53,7 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 
 		//更新jwt到redis或mysql
 
-		ctx.JSON(viewmodels.NewUser(user, tokenString))
+		ctx.JSON(viewmodel.NewUser(user, tokenString))
 	}
 
 	return nil
@@ -66,7 +67,7 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 // @Produce  json
 // @Param body body params.RegisterParam true "register"
 // @Success 200 {object} datamodel.User
-// @Failure 400 {object} viewmodels.Response
+// @Failure 400 {object} viewmodel.Response
 // @Router /user/register [post]
 func (c *UserController) PostRegister(ctx iris.Context) error {
 	param := new(params.RegisterParam)
@@ -74,7 +75,7 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 		return consts.ErrorParam
 	}
 
-	if err := validators.ValidateF(param); err != nil {
+	if err := validator.ValidateF(param); err != nil {
 		return err
 	}
 
@@ -91,7 +92,7 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 		return err
 	}
 
-	ctx.JSON(viewmodels.ResponseSuccess)
+	ctx.JSON(viewmodel.ResponseSuccess)
 	return nil
 }
 
@@ -101,7 +102,7 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 // @Accept  json
 // @Param	Authorization header string true "Bearer JwtToken"
 // @Param   user_id     query    int     true        "用户id"
-// @Success 200 {object} viewmodels.User
+// @Success 200 {object} viewmodel.User
 // @Router /user/info [get]
 func (c *UserController) GetInfo(ctx iris.Context) error {
 	userId, err := ctx.URLParamInt("user_id")

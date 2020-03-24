@@ -1,0 +1,152 @@
+basePath: /api/v1
+definitions:
+  datamodel.User:
+    properties:
+      create_time:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      phone:
+        type: string
+      update_time:
+        type: string
+      userId:
+        type: integer
+      username:
+        type: string
+    type: object
+  params.LoginParam:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  params.RegisterParam:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  viewmodel.Response:
+    properties:
+      code:
+        type: integer
+      data:
+        type: object
+      msg:
+        type: string
+    type: object
+  viewmodel.User:
+    properties:
+      create_time:
+        type: string
+      id:
+        type: integer
+      phone:
+        type: string
+      token:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:18080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample iris server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Iris Template API
+  version: "1.0"
+paths:
+  /user/info:
+    get:
+      consumes:
+      - application/json
+      description: 用户信息
+      parameters:
+      - description: Bearer JwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 用户id
+        in: query
+        name: user_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/viewmodel.User'
+      summary: 用户信息
+      tags:
+      - user
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录
+      parameters:
+      - description: login
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/params.LoginParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/viewmodel.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/viewmodel.Response'
+      summary: 用户登录
+      tags:
+      - user
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: 用户注册
+      parameters:
+      - description: register
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/params.RegisterParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/datamodel.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/viewmodel.Response'
+      summary: 用户注册
+      tags:
+      - user
+swagger: "2.0"

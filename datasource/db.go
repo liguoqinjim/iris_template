@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"li.com/weixin/server/config"
-	"li.com/weixin/server/datamodels"
-	"li.com/weixin/server/logger"
+	"github.com/liguoqinjim/iris_template/config"
+	"github.com/liguoqinjim/iris_template/datamodel"
+	"github.com/liguoqinjim/iris_template/logger"
 	"time"
 )
 
