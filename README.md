@@ -1,7 +1,9 @@
-# iris_template
+# [iris_template](https://github.com/liguoqinjim/iris_template)
 iris template
 
 ## TODO
+ - [x] go mod
+ - [x] 登录，注册，得到用户信息功能
  - [ ] iris mvc controller
  - [ ] error handler
  - [ ] 错误处理
@@ -15,9 +17,8 @@ iris template
  - [ ] validator
  - [ ] travis
  - [ ] middleware
- - [ ] log
+ - [ ] logger
  - [ ] config /viper
- - [ ] go mod
  - [ ] 启动脚本
  - [ ] 打包脚本
  - [ ] Dockerfile
@@ -26,10 +27,11 @@ iris template
  - [ ] 返回静态文件
  - [ ] websocket
  - [ ] BeforeActivation
- - [ ] 登录，注册，得到用户信息功能
  - [ ] casbin
  - [ ] debug模式
  - [ ] /根路径的处理
+ - [ ] codecov覆盖率
+ - [ ] 重命名脚本
 
 ## swagger使用
  - 安装
