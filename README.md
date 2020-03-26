@@ -8,7 +8,7 @@ iris template
  - [ ] error handler
  - [ ] 错误处理
  - [ ] api的单元测试 base_test.go
- - [ ] gorm
+ - [x] gorm
  - [ ] sql脚本
  - [ ] redis
  - [ ] swagger
@@ -18,7 +18,7 @@ iris template
  - [ ] travis
  - [ ] middleware
  - [ ] logger
- - [ ] config /viper
+ - [x] config /viper
  - [ ] 启动脚本
  - [ ] 打包脚本
  - [ ] Dockerfile
@@ -31,7 +31,8 @@ iris template
  - [ ] debug模式
  - [ ] /根路径的处理
  - [ ] codecov覆盖率
- - [ ] 重命名脚本
+ - [x] 重命名脚本
+ - [x] 新建模板脚本
  - [ ] scp脚本
 
 ## swagger使用

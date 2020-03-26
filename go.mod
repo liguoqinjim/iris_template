@@ -2,6 +2,8 @@ module github.com/liguoqinjim/iris_template
 
 go 1.14
 
+replace github.com/liguoqinjim/iris_template => ./iris_template
+
 require (
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
