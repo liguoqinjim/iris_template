@@ -9,7 +9,7 @@ import (
 
 func NewApp() *iris.Application {
 	app := iris.New()
-	app.Logger().SetLevel(config.Conf.IrisLoggerLevel)
+	app.Logger().SetLevel(config.Config.IrisLoggerLevel)
 	app.Logger().Install(logger.Log)
 
 	router.API(app)

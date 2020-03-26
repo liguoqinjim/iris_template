@@ -27,7 +27,7 @@ func API(app *iris.Application) {
 	mvc.Configure(app.Party(apiPrefix), func(app *mvc.Application) {
 		app.Router.Use(middleware.Cors(), middleware.RequestId, middleware.LoggerHandler)
 
-		if config.Conf.JwtFlag {
+		if config.Config.JwtFlag {
 			app.Router.Use(iris.NewConditionalHandler(func(ctx iris.Context) bool {
 
 				if strings.HasSuffix(ctx.Path(), "login") {
@@ -58,8 +58,8 @@ func swag(app *iris.Application) {
 	//url := swagger.URL(swaggerUrl)
 	//_ = url
 	//app.Get("/swagger/{any:path}", swagger.WrapHandler(swaggerFiles.Handler, url))
-	//logger.Log("swag flag:", config.Conf.SwaggerFlag)
+	//logger.Log("swag flag:", config.Config.SwaggerFlag)
 
 	//可关闭
-	app.Get("/swagger/{any:path}", swagger.DisablingWrapHandler(swaggerFiles.Handler, config.Conf.SwaggerFlag))
+	app.Get("/swagger/{any:path}", swagger.DisablingWrapHandler(swaggerFiles.Handler, config.Config.SwaggerFlag))
 }

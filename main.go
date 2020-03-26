@@ -25,7 +25,7 @@ func main() {
 	app := NewApp()
 
 	if err := app.Run(
-		iris.Addr(fmt.Sprintf(":%d", config.Conf.Web.Port)),
+		iris.Addr(fmt.Sprintf(":%d", config.Config.Web.Port)),
 		iris.WithoutServerError(iris.ErrServerClosed),
 		iris.WithOptimizations,
 	); err != nil {

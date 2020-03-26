@@ -11,7 +11,7 @@ import (
 func Jwt() context.Handler {
 	return jwt.New(jwt.Config{
 		ValidationKeyGetter: func(token *jwt.Token) (i interface{}, err error) {
-			return []byte(config.Conf.Secret.Jwt), nil
+			return []byte(config.Config.Secret.Jwt), nil
 		},
 		SigningMethod: jwt.SigningMethodHS256,
 		//Expiration:          false,

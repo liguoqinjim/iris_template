@@ -1,7 +1,10 @@
+# 是否开始测试模式
+test_mode = true
 # 是否开启jwt
 jwt_flag = false
 # 关闭swag的标志
 swagger_flag = "iris_swag"
+# todo 还需要再确认
 iris_logger_level = "debug"
 
 [database]
@@ -10,6 +13,11 @@ port = 3306
 user = "root"
 password = "123456"
 db_name = "temp_db"
+
+[redis]
+addr = "127.0.0.1:6379"
+password = ""
+db = 1
 
 [web]
 port = 18080

@@ -10,37 +10,28 @@ import (
 	"time"
 )
 
-var (
-	DB *gorm.DB
-)
-
-func init() {
-	initDB()
-}
-
 func initDB() {
 	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
-		config.Conf.Database.User,
-		config.Conf.Database.Password,
-		config.Conf.Database.Host,
-		config.Conf.Database.Port,
-		config.Conf.Database.DBName)
+		config.Config.Database.User,
+		config.Config.Database.Password,
+		config.Config.Database.Host,
+		config.Config.Database.Port,
+		config.Config.Database.DBName)
 	logger.Infof("DB connectInfo:%s", connectInfo)
 
 	var err error
 	DB, err = gorm.Open("mysql", connectInfo)
 	if err != nil {
-		logger.Errorf("open DB error:%v", err)
+		logger.Fatalf("open DB error:%v", err)
 	}
 
 	DB.DB().SetConnMaxLifetime(time.Second * 60)
 	DB.DB().SetMaxIdleConns(5)
 	DB.DB().SetMaxOpenConns(10)
 
-	//todo debug模式
-	//if config.Conf.Debug {
-	//	DB.LogMode(true)
-	//}
+	if config.Config.TestMode {
+		DB.LogMode(true)
+	}
 
 	DB.BlockGlobalUpdate(true)
 }

@@ -43,7 +43,7 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 			"iat": time.Now().Unix(),
 			"u":   user.Id,
 		})
-		if t, err := token.SignedString([]byte(config.Conf.Secret.Jwt)); err != nil {
+		if t, err := token.SignedString([]byte(config.Config.Secret.Jwt)); err != nil {
 			logger.Errorf("jwt token", "err", err)
 			return err
 		} else {

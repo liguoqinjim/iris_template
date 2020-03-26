@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var Conf = new(config)
+var Config = new(config)
 
 func init() {
 	readConfig()
@@ -26,7 +26,7 @@ func readConfig() {
 		fmt.Printf("v.ReadConfig error:%v", err)
 		panic(err)
 	}
-	if err := v.Unmarshal(Conf); err != nil {
+	if err := v.Unmarshal(Config); err != nil {
 		fmt.Printf("v.Unmarshal error:%v", err)
 		panic(err)
 	}
@@ -39,12 +39,13 @@ func readConfig() {
 			panic(err)
 		}
 
-		Conf = conf
+		Config = conf
 	})
 	v.WatchConfig()
 }
 
 type config struct {
+	TestMode        bool   `mapstructure:"test_mode"`
 	SwaggerFlag     string `mapstructure:"swagger_flag"`
 	JwtFlag         bool   `mapstructure:"jwt_flag"`
 	IrisLoggerLevel string `mapstructure:"iris_logger_level"`
@@ -55,6 +56,12 @@ type config struct {
 		User     string
 		Password string
 		DBName   string `mapstructure:"db_name"`
+	}
+
+	Redis struct {
+		Addr     string
+		Password string
+		DB       int
 	}
 
 	Web struct {

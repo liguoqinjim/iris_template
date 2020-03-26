@@ -21,8 +21,8 @@ func init() {
 func initLog() {
 	encoder := getEncoder()
 
-	infoWrite := getLogWriter(config.Conf.Log.InfoFile, "info", 7)
-	errorWrite := getLogWriter(config.Conf.Log.ErrorFile, "error", 7)
+	infoWrite := getLogWriter(config.Config.Log.InfoFile, "info", 7)
+	errorWrite := getLogWriter(config.Config.Log.ErrorFile, "error", 7)
 
 	//过滤写入条件
 	infoLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {

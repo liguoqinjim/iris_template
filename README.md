@@ -28,12 +28,15 @@ iris template
  - [ ] websocket
  - [ ] BeforeActivation
  - [ ] casbin
- - [ ] debug模式
+ - [ ] 测试模式，可配置
  - [ ] /根路径的处理
  - [ ] codecov覆盖率
  - [x] 重命名脚本
  - [x] 新建模板脚本
  - [ ] scp脚本
+ - [ ] github badge
+ - [ ] consts整理
+ - [ ] 定时任务
 
 ## swagger使用
  - 安装
