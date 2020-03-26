@@ -37,6 +37,7 @@ iris template
  - [ ] github badge
  - [ ] consts整理
  - [ ] 定时任务
+ - [ ] recover middleware
 
 ## swagger使用
  - 安装
