@@ -50,3 +50,5 @@ build
 #32
 GOARCH=386
 build
+
+ls -al
