@@ -8,6 +8,7 @@ env:
 
 services:
   - mysql
+  - redis-server
 
 before_install:
   - mysql -e 'CREATE DATABASE temp_db DEFAULT CHARACTER SET utf8;'
