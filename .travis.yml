@@ -13,4 +13,10 @@ services:
 before_install:
   - mysql -e 'CREATE DATABASE temp_db DEFAULT CHARACTER SET utf8;'
 
-script: go test -v
+#script: go test -v
+
+script:
+  - ./test.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
