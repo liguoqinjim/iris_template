@@ -2,7 +2,7 @@
 
 ---
 [![Build Status](https://travis-ci.org/liguoqinjim/iris_template.svg?branch=master)](https://travis-ci.org/liguoqinjim/iris_template)
-
+[![codecov](https://codecov.io/gh/liguoqinjim/iris_template/branch/master/graph/badge.svg)](https://codecov.io/gh/liguoqinjim/iris_template)
 ---
 
 ## TODO
@@ -34,7 +34,7 @@
  - [ ] casbin
  - [ ] 测试模式，可配置
  - [ ] /根路径的处理
- - [ ] codecov覆盖率
+ - [x] codecov覆盖率
  - [x] 重命名脚本
  - [x] 新建模板脚本
  - [ ] scp脚本
@@ -42,7 +42,7 @@
  - [ ] consts整理
  - [ ] 定时任务
  - [ ] recover middleware
- - [ ] 测试用的配置文件(比如travis.yml的mysql密码为空)
+ - [ ] 测试用的配置文件(比如travis.yml的mysql密码要为空，但是本地测试的数据库密码为123456)
 
 ## swagger使用
  - 安装
