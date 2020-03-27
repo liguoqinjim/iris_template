@@ -19,7 +19,7 @@ deploy:
   provider: releases
   api_key:
     secure: TWcaPf9m/Iqx45wybYH/z15OM1WUJj0GNe2zYGc/kodOp1jFHoIrHFx4A1yibHldnadI+8KWkwYpUKRDh470RTuaTN0jvj8SVvD45GVNyWC9fdZoy6ZgNlUSFctF56YK+ZAw9lOdvRx56mlHnS9UfLJUxiv1W6TcplWy6dDe6/MN90j6s/US4YDIIkvbp8Z8Tc4jtBXLs4pv46PISSvx7KnpkK24l4gpaaMzesyxZ/0LCpZb3sqUYU9QaDocTstNFPe3tbq2QPRdtsdyR+tGfY5thMRk3msk2T/tr6Zc22GYqxHjDDSfacSZZNWcu8Bc+2Q6TK9M8mOCHRjKrs+FyECthCxpDT9SOM1p/J00BDyYS2g+ddKKpPb8ViqJVEKe1gqArLoGXvTRY4g+CXj9i4UPRx0qC4J79rtzt2zmshbOya7DTkHsJJoNXqTFqZezfomtXGuwnppLvBzaAPA4qSQH9XPfKtxAvrVI37i04+G6oKSdOZysUH7dNS6YVhsi8csW6kibpANcFpCOteuy4g3gDIWVrewPIm2a9He1YWGyfflHqlOc/r9risACeD3snaOa/B6qcUyJAdJUfYTV5O4mvkvelybqYExJQRMx9fsIP2rh17Dl7dOPGHG1uL0/e0UELjl1/ePIYh4GWf3xPB0BseL4xyjmG40C1g+OfZA=
-  file: iris_template*
+  file: ./iris_template*
   skip_cleanup: true
   on:
     repo: liguoqinjim/iris_template
