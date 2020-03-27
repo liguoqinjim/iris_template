@@ -4,8 +4,10 @@ set -e
 
 SOURCE_FILE_NAME=main
 TARGET_FILE_NAME=iris_template
+RELEASE_PATH=releases/
 
 rm -fr ${TARGET_FILE_NAME}*
+rm -rf ${RELEASE_PATH}*
 
 # todo 修改配置文件名称
 
@@ -13,6 +15,7 @@ build(){
     echo $GOOS $GOARCH
 
     tname=${TARGET_FILE_NAME}_${GOOS}_${GOARCH}${EXT}
+    echo 'tname='$tname
 
     env GOOS=$GOOS GOARCH=$GOARCH \
     go build -o ${tname} \
@@ -23,11 +26,16 @@ build(){
 
     if [ ${GOOS} == "windows" ];then
         #zip ${tname}.zip ${TARGET_FILE_NAME}${EXT} config.ini ../public/
-        zip ${tname}.zip ${TARGET_FILE_NAME}${EXT} app.toml
+        filename=${tname}.zip
+        zip $filename ${TARGET_FILE_NAME}${EXT} app.toml
+        mv ${filename} ${RELEASE_PATH}${filename}
     else
-        tar --exclude=*.gz  --exclude=*.zip  --exclude=*.git -czvf ${tname}.tar.gz ${TARGET_FILE_NAME}${EXT} app.toml *.sh -C ./ .
+        filename=${tname}.tar.gz
+        tar --exclude=*.gz  --exclude=*.zip  --exclude=*.git -czvf ${filename} ${TARGET_FILE_NAME}${EXT} app.toml *.sh -C ./ .
+        mv ${filename} ${RELEASE_PATH}${filename}
     fi
-    mv ${TARGET_FILE_NAME}${EXT} ${tname}
+    echo "target:"${TARGET_FILE_NAME}${EXT}
+    mv ${TARGET_FILE_NAME}${EXT} ${RELEASE_PATH}${tname}
 }
 
 CGO_ENABLED=0
@@ -51,4 +59,5 @@ build
 GOARCH=386
 build
 
-ls -al
+echo 'build后的目录结构'
+ls -al releases
