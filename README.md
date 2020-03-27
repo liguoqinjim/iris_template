@@ -1,5 +1,9 @@
 # [iris_template](https://github.com/liguoqinjim/iris_template)
-iris template
+
+---
+[![Build Status](https://travis-ci.org/liguoqinjim/iris_template.svg?branch=master)](https://travis-ci.org/liguoqinjim/iris_template)
+
+---
 
 ## TODO
  - [x] go mod
@@ -7,11 +11,11 @@ iris template
  - [ ] iris mvc controller
  - [ ] error handler
  - [ ] 错误处理
- - [ ] api的单元测试 base_test.go
+ - [x] api的单元测试 base_test.go
  - [x] gorm
  - [ ] sql脚本
  - [ ] redis
- - [ ] swagger
+ - [x] swagger
  - [ ] jwt
  - [ ] cors
  - [ ] validator

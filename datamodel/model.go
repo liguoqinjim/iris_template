@@ -10,7 +10,7 @@ type User struct {
 	Password   string    `gorm:"column:password;type:varchar(64);size:64;not null" json:"-"`
 	Phone      string    `gorm:"column:phone;type:char(11);size:11" json:"phone"`
 	CreateTime time.Time `gorm:"column:create_time;type:datetime;not null;default:CURRENT_TIMESTAMP" json:"-"`
-	UpdateTime time.Time `gorm:"column:update_time;type:datetime" json:"-"`
+	UpdateTime time.Time `gorm:"column:update_time;type:datetime;default:NULL" json:"-"`
 	Token      string    `gorm:"-" json:"token"`
 }
 
