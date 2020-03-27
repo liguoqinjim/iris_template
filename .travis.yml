@@ -5,5 +5,11 @@ go:
   - 1.14.x
 env:
   - GO111MODULE=on
-  
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE temp_db DEFAULT CHARACTER SET utf8;'
+
 script: go test -v

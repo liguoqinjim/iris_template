@@ -38,6 +38,7 @@ iris template
  - [ ] consts整理
  - [ ] 定时任务
  - [ ] recover middleware
+ - [ ] 测试用的配置文件(比如travis.yml的mysql密码为空)
 
 ## swagger使用
  - 安装
