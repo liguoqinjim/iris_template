@@ -6,6 +6,7 @@ SOURCE_FILE_NAME=main
 TARGET_FILE_NAME=iris_template
 RELEASE_PATH=releases/
 
+mkdir releases
 rm -fr ${TARGET_FILE_NAME}*
 rm -rf ${RELEASE_PATH}*
 
