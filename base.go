@@ -22,7 +22,7 @@ func NewApp() *iris.Application {
 	return app
 }
 
-func NewTestApp() *iris.Application {
+func newTestApp() *iris.Application {
 	app := iris.New()
 	router.API(app)
 

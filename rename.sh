@@ -22,3 +22,5 @@ dir=${arr[$len]}
 # 替换replace的路径
 sed -i '' 's,'iris_template','$dir',g' go.mod
 
+# go fmt
+go fmt ./...
