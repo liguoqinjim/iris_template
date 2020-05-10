@@ -1,11 +1,12 @@
 package middleware
 
 import (
+	"net/http/httputil"
+	"time"
+
 	"github.com/kataras/iris/v12"
 	"github.com/liguoqinjim/iris_template/logger"
 	"github.com/liguoqinjim/iris_template/web/core"
-	"net/http/httputil"
-	"time"
 )
 
 func LoggerHandler(ctx iris.Context) {
@@ -33,5 +34,6 @@ func LoggerHandler(ctx iris.Context) {
 	latency := end.Sub(start).String()
 
 	//要使用ctx.Recorder()，需要先调用ctx.Record()
-	logger.Infow("Request end", "requestId", core.GetReqID(ctx), "latency", latency, "ip", ip, "path", path, "body", ctx.Recorder().Body())
+	// logger.Infow("Request end", "requestId", core.GetReqID(ctx), "latency", latency, "ip", ip, "path", path, "body", ctx.Recorder().Body())
+	logger.Infow("Request end", "requestId", core.GetReqID(ctx), "latency", latency, "ip", ip, "path", path)
 }
