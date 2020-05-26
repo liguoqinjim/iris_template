@@ -24,7 +24,9 @@ var (
 	ErrJwtTokenUserId  = newError(10102, "jwt token中未发现userId")
 
 	//
-	ErrUserNotFound = newError(11008, "用户不存在")
+	ErrUserNotFound   = newError(11001, "用户不存在")
+	ErrUserRegistered = newError(11002, "用户已注册")
+	ErrUserPassword   = newError(11003, "用户名密码错误")
 )
 
 type E struct {

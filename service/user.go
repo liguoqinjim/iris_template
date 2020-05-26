@@ -1,41 +1,64 @@
 package service
 
 import (
+	"github.com/iris-contrib/middleware/jwt"
+	"github.com/liguoqinjim/iris_template/config"
+	"github.com/liguoqinjim/iris_template/consts"
 	"github.com/liguoqinjim/iris_template/datamodel"
+	"github.com/liguoqinjim/iris_template/logger"
 	"github.com/liguoqinjim/iris_template/repository"
 	"github.com/liguoqinjim/iris_template/web/param"
-	"github.com/pkg/errors"
+	"time"
 )
 
 type userService struct {
-	repoUser repository.UserRepository
+	repoUser repository.UserRepo
 }
 
-var UserService = new(userService)
-
-func init() {
-	UserService.repoUser = repository.NewUserRepository()
+var UserService = &userService{
+	repoUser: repository.NewUserRepo(),
 }
 
-func (s userService) Exist(username string) (bool, error) {
-	return s.repoUser.Exist(username)
-}
-
-func (s *userService) Register(param *param.RegisterParam) (*datamodel.User, error) {
-	user := &datamodel.User{Username: param.Username, Password: param.Password}
-	user, err := s.repoUser.Insert(user)
-
-	return user, err
-}
-
-func (s *userService) Login(param *param.LoginParam) (*datamodel.User, error) {
-	if user, err := s.repoUser.Get(param.Username); err != nil {
+func (s *userService) Register(p *param.RegisterParam) (interface{}, error) {
+	exist, err := s.repoUser.Exist(p.Username)
+	if err != nil {
 		return nil, err
-	} else {
-		if user.Password != param.Password {
-			return nil, errors.New("用户名或密码错误")
-		} else {
-			return user, nil
-		}
 	}
+	if exist {
+		return nil, consts.ErrUserRegistered
+	}
+
+	user := &datamodel.User{
+		Username:   p.Username,
+		Password:   p.Password,
+		CreateTime: time.Now(),
+	}
+
+	return s.repoUser.Insert(user)
+}
+
+func (s *userService) Login(p *param.LoginParam) (interface{}, error) {
+	user, err := s.repoUser.Get(p.Username)
+	if err != nil {
+		return nil, err
+	}
+	if user.Password != p.Password {
+		return nil, consts.ErrUserPassword
+	}
+
+	//jwt
+	token := jwt.NewTokenWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"exp": time.Now().Add(time.Hour).Unix(),
+		"iat": time.Now().Unix(),
+		"u":   user.Id,
+	})
+	if t, err := token.SignedString([]byte(config.Config.Secret.Jwt)); err != nil {
+		logger.Errorf("jwt token", "err", err)
+		return nil, consts.ErrSystem
+	} else {
+		user.Token = t
+		//todo 需要更新到mysql或者redis
+	}
+
+	return user, nil
 }
