@@ -29,12 +29,11 @@ func API(app *iris.Application) {
 
 		if config.Config.JwtFlag {
 			app.Router.Use(iris.NewConditionalHandler(func(ctx iris.Context) bool {
-
 				if strings.HasSuffix(ctx.Path(), "login") {
 					return false
 				}
 				return true
-			}))
+			}, middleware.Jwt()))
 		}
 
 		//总的错误处理

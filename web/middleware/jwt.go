@@ -14,7 +14,7 @@ func Jwt() context.Handler {
 			return []byte(config.Config.Secret.Jwt), nil
 		},
 		SigningMethod: jwt.SigningMethodHS256,
-		//Expiration:          false,
+		Expiration:    true,
 		ErrorHandler: func(ctx context.Context, err error) {
 			ctx.StopExecution()
 			ctx.StatusCode(iris.StatusUnauthorized)

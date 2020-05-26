@@ -8,6 +8,7 @@
 ## TODO
  - [x] go mod
  - [x] 登录，注册，得到用户信息功能
+ - [ ] 密码加密存储
  - [ ] iris mvc controller
  - [ ] error handler
  - [ ] 错误处理
@@ -43,6 +44,9 @@
  - [ ] 定时任务
  - [ ] recover middleware
  - [ ] 测试用的配置文件(比如travis.yml的mysql密码要为空，但是本地测试的数据库密码为123456)
+ - [ ] server项目的错误处理移过来
+ - [ ] server项目的错误返回
+ - [ ] server项目的导出excel
 
 ## swagger使用
  - 安装
