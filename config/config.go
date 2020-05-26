@@ -45,7 +45,7 @@ func readConfig() {
 }
 
 type config struct {
-	TestMode        bool   `mapstructure:"test_mode"`
+	Debug           bool
 	SwaggerFlag     string `mapstructure:"swagger_flag"`
 	JwtFlag         bool   `mapstructure:"jwt_flag"`
 	IrisLoggerLevel string `mapstructure:"iris_logger_level"`

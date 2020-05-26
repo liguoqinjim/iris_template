@@ -29,7 +29,7 @@ func initDB() {
 	DB.DB().SetMaxIdleConns(5)
 	DB.DB().SetMaxOpenConns(10)
 
-	if config.Config.TestMode {
+	if config.Config.Debug {
 		DB.LogMode(true)
 	}
 

@@ -1,5 +1,5 @@
-# 是否开始测试模式
-test_mode = true
+# debug模式
+debug = true
 # 是否开启jwt
 jwt_flag = false
 # 关闭swag的标志

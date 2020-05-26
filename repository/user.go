@@ -29,7 +29,7 @@ func (r *userRepository) Get(username string) (*datamodel.User, error) {
 	user := new(datamodel.User)
 	err := datasource.DB.Where("username = ?", username).Take(user).Error
 	if err != nil && gorm.IsRecordNotFoundError(err) {
-		err = consts.ErrorDataNotFound
+		err = consts.ErrDataNotFound
 	}
 
 	return user, err

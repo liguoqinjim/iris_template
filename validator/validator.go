@@ -60,7 +60,7 @@ func ValidateStruct(s interface{}) error {
 	if err := Validate.Struct(s); err != nil {
 		errs := err.(validator.ValidationErrors)
 		logger.Errorf(errs[0].Translate(ValidateTrans))
-		return consts.ErrorValidate
+		return consts.ErrValidate
 	} else {
 		return nil
 	}
@@ -70,7 +70,7 @@ func ValidateValue(v interface{}, tag string) error {
 	if err := Validate.Var(v, tag); err != nil {
 		errs := err.(validator.ValidationErrors)
 		logger.Errorf(errs[0].Translate(ValidateTrans))
-		return consts.ErrorValidate
+		return consts.ErrValidate
 	} else {
 		return nil
 	}

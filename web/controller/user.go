@@ -27,7 +27,7 @@ type UserController struct{}
 func (c *UserController) PostLogin(ctx iris.Context) error {
 	p := &param.LoginParam{}
 	if err := ctx.ReadJSON(p); err != nil {
-		return consts.ErrorParam
+		return consts.ErrParam
 	}
 
 	if err := validator.ValidateStruct(p); err != nil {
@@ -70,7 +70,7 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 func (c *UserController) PostRegister(ctx iris.Context) error {
 	p := new(param.RegisterParam)
 	if err := ctx.ReadJSON(p); err != nil {
-		return consts.ErrorParam
+		return consts.ErrParam
 	}
 
 	if err := validator.ValidateStruct(p); err != nil {
@@ -78,10 +78,10 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 	}
 
 	if exist, err := service.UserService.Exist(p.Username); err != nil {
-		return consts.ErrorDB
+		return consts.ErrDB
 	} else {
 		if exist {
-			return consts.ErrorUserAlreadyExist
+			return consts.ErrUserNotFound
 		}
 	}
 

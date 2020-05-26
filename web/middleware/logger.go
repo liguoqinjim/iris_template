@@ -24,7 +24,8 @@ func LoggerHandler(ctx iris.Context) {
 	ip := ctx.RemoteAddr()
 	dumpReq, _ := httputil.DumpRequest(ctx.Request(), true)
 	if dumpReq != nil {
-		logger.Debugw("Request start", "requestId", core.GetReqID(ctx), "description", string(dumpReq))
+		//logger.Infow("Request start", "requestId", core.GetReqID(ctx), "description", string(dumpReq))
+		logger.Infow("Request start", "requestId", core.GetReqID(ctx))
 	}
 
 	ctx.Record()

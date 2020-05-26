@@ -10,15 +10,22 @@ type Response struct {
 	Data interface{} `json:"data"`
 }
 
+type ResponseDebug struct {
+	Code  int         `json:"code"`
+	Msg   string      `json:"msg"`
+	Data  interface{} `json:"data"`
+	Debug string      `json:"debug"`
+}
+
+//分页结果
 type QueryContent struct {
-	PageNum  int         `json:"page_num"`
-	PageSize int         `json:"page_size"`
-	Total    int         `json:"total"`
-	Result   interface{} `json:"result"`
+	Page   int         `json:"page"`   //当前页
+	Total  int         `json:"total"`  //总数
+	Result interface{} `json:"result"` //结果
 }
 
 var (
-	ResponseSuccess = &Response{Code: consts.SuccessCode, Msg: consts.SuccessMessage}
+	ResponseSuccess = &Response{Code: consts.SuccessCode, Msg: consts.SuccessMsg}
 	//ResponseParamError  = &Response{Code: consts.ErrorCodeParamError, Msg: consts.ErrorCodeParamErrorMessage}
 	//ResponseDBError     = &Response{Code: consts.ErrorCodeDBError, Msg: consts.ErrorCodeDBErrorMessage}
 	//ResponseSystemError = &Response{Code: consts.ErrorCodeSystemError, Msg: consts.ErrorCodeSystemErrorMessage}
