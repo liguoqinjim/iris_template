@@ -47,6 +47,7 @@
  - [ ] server项目的错误处理移过来
  - [ ] server项目的错误返回
  - [ ] server项目的导出excel
+ - [ ] sentry
 
 ## swagger使用
  - 安装
