@@ -42,8 +42,8 @@ func TestUserRegister(t *testing.T) {
 			"password": "123456",
 		}
 
-		post(t, url, obj1, http.StatusOK, []interface{}{consts.ErrorValidate.Error()})
-		post(t, url, obj2, http.StatusOK, []interface{}{consts.ErrorValidate.Error()})
+		post(t, url, obj1, http.StatusOK, []interface{}{consts.ErrValidate.Error()})
+		post(t, url, obj2, http.StatusOK, []interface{}{consts.ErrValidate.Error()})
 	})
 
 	t.Run("注册用户名已存在", func(t *testing.T) {
@@ -52,7 +52,7 @@ func TestUserRegister(t *testing.T) {
 			"password": "123456",
 		}
 
-		post(t, url, obj, http.StatusOK, []interface{}{consts.ErrorUserAlreadyExist.Error()})
+		post(t, url, obj, http.StatusOK, []interface{}{consts.ErrUserNotFound.Error()})
 	})
 }
 
