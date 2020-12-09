@@ -48,6 +48,7 @@
  - [ ] server项目的错误返回
  - [ ] server项目的导出excel
  - [ ] sentry
+ - [ ] 升级到gorm v2
 
 ## swagger使用
  - 安装
