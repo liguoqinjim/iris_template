@@ -4,8 +4,8 @@ import (
 	"github.com/iris-contrib/middleware/jwt"
 	"github.com/liguoqinjim/iris_template/config"
 	"github.com/liguoqinjim/iris_template/consts"
-	"github.com/liguoqinjim/iris_template/datamodel"
 	"github.com/liguoqinjim/iris_template/logger"
+	"github.com/liguoqinjim/iris_template/model"
 	"github.com/liguoqinjim/iris_template/repository"
 	"github.com/liguoqinjim/iris_template/web/param"
 	"time"
@@ -28,7 +28,7 @@ func (s *userService) Register(p *param.RegisterParam) (interface{}, error) {
 		return nil, consts.ErrUserRegistered
 	}
 
-	user := &datamodel.User{
+	user := &model.User{
 		Username:   p.Username,
 		Password:   p.Password,
 		CreateTime: time.Now(),

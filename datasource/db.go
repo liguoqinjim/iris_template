@@ -3,8 +3,8 @@ package datasource
 import (
 	"fmt"
 	"github.com/liguoqinjim/iris_template/config"
-	"github.com/liguoqinjim/iris_template/datamodel"
 	"github.com/liguoqinjim/iris_template/logger"
+	"github.com/liguoqinjim/iris_template/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
@@ -45,10 +45,10 @@ func initDB() {
 }
 
 func InitTestDB() {
-	DB.AutoMigrate(&datamodel.User{})
+	DB.AutoMigrate(&model.User{})
 
 	//测试数据
-	DB.Create(&datamodel.User{
+	DB.Create(&model.User{
 		Id:       1,
 		Username: "admin",
 		Password: "123456",
@@ -56,5 +56,5 @@ func InitTestDB() {
 }
 
 func ResetTestDB() {
-	DB.Migrator().DropTable(&datamodel.User{})
+	DB.Migrator().DropTable(&model.User{})
 }

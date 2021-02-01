@@ -2,7 +2,7 @@ package viewmodel
 
 import (
 	"github.com/jinzhu/copier"
-	"github.com/liguoqinjim/iris_template/datamodel"
+	"github.com/liguoqinjim/iris_template/model"
 	"github.com/liguoqinjim/iris_template/logger"
 	"time"
 )
@@ -15,7 +15,7 @@ type User struct {
 	Token      string    `json:"token"`
 }
 
-func NewUser(user *datamodel.User, token string) *User {
+func NewUser(user *model.User, token string) *User {
 	u := new(User)
 	err := copier.Copy(u, user)
 	u.Token = token
