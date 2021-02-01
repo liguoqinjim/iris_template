@@ -23,7 +23,6 @@ require (
 	github.com/iris-contrib/swagger/v12 v12.0.0
 	github.com/jehiah/go-strftime v0.0.0-20171201141054-1d33003b3869 // indirect
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a
-	github.com/jinzhu/gorm v1.9.12
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
 	github.com/kataras/iris/v12 v12.1.8
 	github.com/lestrrat-go/file-rotatelogs v2.3.0+incompatible
@@ -33,7 +32,6 @@ require (
 	github.com/nats-io/nats-server/v2 v2.1.4 // indirect
 	github.com/onsi/ginkgo v1.12.0 // indirect
 	github.com/onsi/gomega v1.9.0 // indirect
-	github.com/pkg/errors v0.8.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/spf13/viper v1.6.2
@@ -48,6 +46,5 @@ require (
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	go.uber.org/zap v1.10.0
 	gorm.io/driver/mysql v1.0.4
-	gorm.io/driver/sqlite v1.1.4 // indirect
 	gorm.io/gorm v1.20.12
 )
