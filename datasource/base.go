@@ -1,7 +1,7 @@
 package datasource
 
 import (
-	"github.com/go-redis/redis/v7"
+	"github.com/go-redis/redis/v8"
 	"gorm.io/gorm"
 )
 
@@ -9,7 +9,7 @@ var (
 	//mysql
 	DB *gorm.DB
 	//redis
-	Client *redis.Client
+	RedisClient *redis.Client
 )
 
 func init() {

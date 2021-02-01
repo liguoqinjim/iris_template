@@ -15,7 +15,7 @@ require (
 	github.com/go-playground/locales v0.13.0
 	github.com/go-playground/universal-translator v0.17.0
 	github.com/go-playground/validator/v10 v10.2.0
-	github.com/go-redis/redis/v7 v7.2.0
+	github.com/go-redis/redis/v8 v8.4.11
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/iris-contrib/middleware/cors v0.0.0-20191219204441-78279b78a367
@@ -30,8 +30,6 @@ require (
 	github.com/mattn/go-colorable v0.1.6 // indirect
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/nats-io/nats-server/v2 v2.1.4 // indirect
-	github.com/onsi/ginkgo v1.12.0 // indirect
-	github.com/onsi/gomega v1.9.0 // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/spf13/viper v1.6.2
