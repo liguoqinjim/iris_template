@@ -44,7 +44,7 @@ func (r *userRepo) Get(username string) (*datamodel.User, error) {
 }
 
 func (r *userRepo) Exist(username string) (bool, error) {
-	var count int
+	var count int64
 	if err := datasource.DB.Model(&datamodel.User{}).Where("username = ?", username).Count(&count).Error; err != nil && !gorm.IsRecordNotFoundError(err) {
 		logger.Errorf("user Exist error:%v", err)
 		return false, consts.ErrDB

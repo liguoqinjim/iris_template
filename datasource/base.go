@@ -2,7 +2,7 @@ package datasource
 
 import (
 	"github.com/go-redis/redis/v7"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 var (
