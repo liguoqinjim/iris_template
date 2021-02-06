@@ -35,7 +35,6 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 		return err
 	} else {
 
-
 		//更新jwt到redis或mysql
 
 		core.Response(ctx, user, nil)

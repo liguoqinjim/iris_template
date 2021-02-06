@@ -2,8 +2,8 @@ package viewmodel
 
 import (
 	"github.com/jinzhu/copier"
-	"github.com/liguoqinjim/iris_template/model"
 	"github.com/liguoqinjim/iris_template/logger"
+	"github.com/liguoqinjim/iris_template/model"
 	"time"
 )
 
