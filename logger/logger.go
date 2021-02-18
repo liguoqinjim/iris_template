@@ -129,3 +129,7 @@ func (l *Logger) Info(msg ...interface{}) {
 func (l *Logger) Debug(msg ...interface{}) {
 	zapLog.Debug(msg...)
 }
+
+func (l *Logger) Get() *zap.SugaredLogger {
+	return l.zaplog
+}
