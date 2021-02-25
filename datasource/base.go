@@ -13,6 +13,7 @@ var (
 )
 
 func init() {
-	initDB()
+	//initDBMysql()
+	initDBPostgres()
 	initRedis()
 }
