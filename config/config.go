@@ -64,6 +64,14 @@ type config struct {
 		DB       int
 	}
 
+	Mongo struct {
+		Host       string
+		Port       int
+		User       string
+		Password   string
+		AuthSource string
+	}
+
 	Web struct {
 		Port     int
 		PageSize int

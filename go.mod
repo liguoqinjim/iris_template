@@ -27,7 +27,6 @@ require (
 	github.com/kataras/iris/v12 v12.1.8
 	github.com/lestrrat-go/file-rotatelogs v2.3.0+incompatible
 	github.com/lestrrat-go/strftime v1.0.1 // indirect
-	github.com/mattn/go-colorable v0.1.6 // indirect
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/nats-io/nats-server/v2 v2.1.4 // indirect
 	github.com/satori/go.uuid v1.2.0
@@ -42,7 +41,9 @@ require (
 	github.com/yudai/gojsondiff v1.0.0 // indirect
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	github.com/yudai/pp v2.0.1+incompatible // indirect
+	go.mongodb.org/mongo-driver v1.4.6
 	go.uber.org/zap v1.10.0
 	gorm.io/driver/mysql v1.0.4
+	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.20.12
 )

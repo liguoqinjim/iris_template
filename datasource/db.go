@@ -6,6 +6,7 @@ import (
 	"github.com/liguoqinjim/iris_template/logger"
 	"github.com/liguoqinjim/iris_template/model"
 	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
 	"time"
@@ -42,6 +43,8 @@ func initDBMysql() {
 	sqlDB.SetMaxIdleConns(5)
 	sqlDB.SetMaxOpenConns(10)
 	sqlDB.SetConnMaxLifetime(time.Second * 60)
+
+	logger.Infof("db mysql connect success")
 }
 
 func initDBPostgres() {
@@ -62,7 +65,10 @@ func initDBPostgres() {
 	}
 
 	var err error
-	DB, err = gorm.Open(mysql.Open(dsn), gormCf)
+	DB, err = gorm.Open(postgres.New(postgres.Config{
+		DSN:                  dsn,
+		PreferSimpleProtocol: true, // disables implicit prepared statement usage
+	}), gormCf)
 	if err != nil {
 		logger.Fatalf("open DB error:%v", err)
 	}
@@ -75,6 +81,8 @@ func initDBPostgres() {
 	sqlDB.SetMaxIdleConns(5)
 	sqlDB.SetMaxOpenConns(10)
 	sqlDB.SetConnMaxLifetime(time.Second * 60)
+
+	logger.Infof("db postgres connect success")
 }
 
 func InitTestDB() {
