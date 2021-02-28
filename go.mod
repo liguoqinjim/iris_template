@@ -29,6 +29,7 @@ require (
 	github.com/lestrrat-go/strftime v1.0.1 // indirect
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/nats-io/nats-server/v2 v2.1.4 // indirect
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/spf13/viper v1.6.2
