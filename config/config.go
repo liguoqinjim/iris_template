@@ -50,7 +50,15 @@ type config struct {
 	JwtFlag         bool   `mapstructure:"jwt_flag"`
 	IrisLoggerLevel string `mapstructure:"iris_logger_level"`
 
-	Database struct {
+	Mysql struct {
+		Host     string
+		Port     int
+		User     string
+		Password string
+		DBName   string `mapstructure:"db_name"`
+	}
+
+	Postgres struct {
 		Host     string
 		Port     int
 		User     string

@@ -15,11 +15,11 @@ import (
 func initDBMysql() {
 	//mysql链接样例：username:password@tcp(host:port)/dbname?charset=utf8&parseTime=True&loc=Local&tls=skip-verify&autocommit=true
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
-		config.Config.Database.User,
-		config.Config.Database.Password,
-		config.Config.Database.Host,
-		config.Config.Database.Port,
-		config.Config.Database.DBName)
+		config.Config.Mysql.User,
+		config.Config.Mysql.Password,
+		config.Config.Mysql.Host,
+		config.Config.Mysql.Port,
+		config.Config.Mysql.DBName)
 	logger.Infof("DB mysql connectInfo:%s", dsn)
 
 	gormCf := &gorm.Config{
@@ -50,11 +50,11 @@ func initDBMysql() {
 func initDBPostgres() {
 	//postgresql链接样例：host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai",
-		config.Config.Database.Host,
-		config.Config.Database.User,
-		config.Config.Database.Password,
-		config.Config.Database.DBName,
-		config.Config.Database.Port)
+		config.Config.Postgres.Host,
+		config.Config.Postgres.User,
+		config.Config.Postgres.Password,
+		config.Config.Postgres.DBName,
+		config.Config.Postgres.Port)
 	logger.Infof("DB postgres connectInfo:%s", dsn)
 
 	gormCf := &gorm.Config{

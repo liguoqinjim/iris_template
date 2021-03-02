@@ -4,6 +4,7 @@ import (
 	"github.com/iris-contrib/middleware/jwt"
 	"github.com/liguoqinjim/iris_template/config"
 	"github.com/liguoqinjim/iris_template/consts"
+	"github.com/liguoqinjim/iris_template/datasource"
 	"github.com/liguoqinjim/iris_template/logger"
 	"github.com/liguoqinjim/iris_template/model"
 	"github.com/liguoqinjim/iris_template/repository"
@@ -16,7 +17,7 @@ type userService struct {
 }
 
 var UserService = &userService{
-	repoUser: repository.NewUserRepo(),
+	repoUser: repository.NewUserRepo(datasource.DB, logger.Log.Get()),
 }
 
 func (s *userService) Register(p *param.RegisterParam) (interface{}, error) {

@@ -7,7 +7,14 @@ swagger_flag = "iris_swag"
 # todo 还需要再确认
 iris_logger_level = "debug"
 
-[database]
+[mysql]
+host = "127.0.0.1"
+port = 3306
+user = "root"
+password = "123456"
+db_name = "temp_db"
+
+[postgres]
 host = "127.0.0.1"
 port = 3306
 user = "root"
