@@ -56,6 +56,7 @@
 ## swagger使用
  - 安装
  - `swag init`
+ - 访问地址：`http://localhost:30100/swagger/index.html`
  
 ## NOTICE
  - `package consts`用了复数是因为const是golang关键字
