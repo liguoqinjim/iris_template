@@ -82,7 +82,7 @@ type config struct {
 
 	Web struct {
 		Port     int
-		PageSize int
+		PageSize int `mapstructure:"page_size"`
 	}
 
 	Secret struct {
