@@ -19,7 +19,7 @@ var (
 )
 
 func init() {
-	initDBMysql()
+	//initDBMysql()
 	//initDBPostgres()
 	//initRedis()
 	//initMongo()
