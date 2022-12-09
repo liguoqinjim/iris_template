@@ -44,6 +44,7 @@ require (
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	go.mongodb.org/mongo-driver v1.4.6
 	go.uber.org/zap v1.10.0
+	golang.org/x/sys v0.3.0 // indirect
 	gorm.io/driver/mysql v1.0.4
 	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.20.12
