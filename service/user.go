@@ -9,6 +9,7 @@ import (
 	"github.com/liguoqinjim/iris_template/model"
 	"github.com/liguoqinjim/iris_template/repository"
 	"github.com/liguoqinjim/iris_template/web/param"
+	"github.com/liguoqinjim/iris_template/web/viewmodel"
 	"time"
 )
 
@@ -62,4 +63,17 @@ func (s *userService) Login(p *param.LoginParam) (interface{}, error) {
 	}
 
 	return user, nil
+}
+
+func (s *userService) Query(p *param.QueryParam) (interface{}, error) {
+	total, data, err := s.repoUser.Query(p.Username, p.Page, p.PageSize)
+	if err != nil {
+		return nil, err
+	}
+
+	return &viewmodel.QueryContent{
+		Page:   p.Page,
+		Total:  total,
+		Result: data,
+	}, nil
 }

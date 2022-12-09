@@ -31,14 +31,12 @@ func (c *UserController) PostLogin(ctx iris.Context) error {
 		return err
 	}
 
-	if user, err := service.UserService.Login(p); err != nil {
-		return err
-	} else {
-
+	res, err := service.UserService.Login(p)
+	if err == nil {
 		//更新jwt到redis或mysql
-
-		core.Response(ctx, user, nil)
 	}
+
+	core.Response(ctx, res, err)
 
 	return nil
 }
@@ -60,16 +58,33 @@ func (c *UserController) PostRegister(ctx iris.Context) error {
 		return err
 	}
 
-	if data, err := service.UserService.Register(p); err != nil {
-		return err
-	} else {
-		core.Response(ctx, data, nil)
-	}
+	res, err := service.UserService.Register(p)
+	core.Response(ctx, res, err)
 
 	return nil
 }
 
-//每个controller各自的error handler可以覆盖总的error handler
+// @Summary 分页查询
+// @Description 分页查询
+// @Tags user
+func (c *UserController) GetQuery(ctx iris.Context) error {
+	p := &param.QueryParam{Page: consts.PageDefault, PageSize: consts.PageSizeDefault}
+	if err := ctx.ReadQuery(p); err != nil {
+		logger.Errorf("ctx.ReadQuery error:%v", err)
+		return consts.ErrParam
+	}
+
+	if err := validator.ValidateStruct(p); err != nil {
+		return err
+	}
+
+	res, err := service.UserService.Query(p)
+	core.Response(ctx, res, err)
+
+	return nil
+}
+
+// 每个controller各自的error handler可以覆盖总的error handler
 func (c *UserController) HandleError(ctx iris.Context, err error) {
 	logger.Errorf("user controller handler error:%v", err)
 

@@ -40,6 +40,7 @@ func API(app *iris.Application) {
 		app.HandleError(core.HandleError)
 
 		app.Party("/user").Handle(new(controller.UserController))
+		app.Party("/ping").Handle(new(controller.PingController))
 	})
 
 	//swagger
