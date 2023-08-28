@@ -11,9 +11,8 @@ rm -fr ${TARGET_FILE_NAME}*
 rm -rf ${RELEASE_PATH}*
 
 build(){
-    echo "build:"$GOOS $GOARCH
-
     tname=${TARGET_FILE_NAME}_${GOOS}_${GOARCH}${EXT}
+    echo "build:"$tname
 
     env GOOS=$GOOS GOARCH=$GOARCH \
     go build -o ${tname} \
@@ -52,6 +51,7 @@ build
 
 #windows
 #64
+EXT=.exe
 GOOS=windows
 GOARCH=amd64
 build

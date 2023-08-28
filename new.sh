@@ -9,7 +9,7 @@ fi
 
 # 拷贝至新目录
 # 忽略.idea和.git目录
-rsync -av --exclude .idea --exclude .git --exclude logs --exclude releases --exclude app.toml --exclude .gitignore --exclude new.sh --exclude test.sh --exclude .travis.yml . $1
+rsync -av --exclude .idea --exclude .git --exclude logs --exclude releases --exclude app.toml --exclude .gitignore --exclude README.md --exclude new.sh --exclude test.sh --exclude .travis.yml . $1
 
 # 重命名包
 cd $1
@@ -21,3 +21,6 @@ mv app_template.toml app.toml
 
 # 重命名template.gitignore
 mv template.gitignore .gitignore
+
+# 创建README.md
+touch README.md
